@@ -1,0 +1,24 @@
+<h1>Listing Item availabilities</h1>
+
+<table>
+  <thead>
+    <tr>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for item_availability <- @item_availabilities do %>
+    <tr>
+
+      <td>
+        <span><%= link "Show", to: Routes.item_availability_path(@conn, :show, item_availability) %></span>
+        <span><%= link "Edit", to: Routes.item_availability_path(@conn, :edit, item_availability) %></span>
+        <span><%= link "Delete", to: Routes.item_availability_path(@conn, :delete, item_availability), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Item availability", to: Routes.item_availability_path(@conn, :new) %></span>
