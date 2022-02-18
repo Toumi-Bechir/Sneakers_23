@@ -16,6 +16,8 @@ defmodule Sneakers23Web do
   below. Instead, define any helper function in modules
   and import those modules here.
   """
+  defdelegate notify_product_released(product), to: Sneakers23Web.ProductChannel
+
 
   def controller do
     quote do

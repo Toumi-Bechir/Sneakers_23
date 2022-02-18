@@ -5,8 +5,13 @@ defmodule Sneakers23Web.ProductController do
   alias Sneakers23.Inventory.Product
 
   def index(conn, _params) do
-    products = Inventory.list_products()
-    render(conn, "index.html", products: products)
+    # products = Inventory.list_products()
+    # render(conn, "index.html", products: products)
+    {:ok, products} = Sneakers23.Inventory.get_complete_products()
+
+    conn
+    |> assign(:products, products)
+    |> render("index.html")
   end
 
   def new(conn, _params) do

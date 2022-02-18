@@ -15,9 +15,10 @@ defmodule Sneakers23.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Sneakers23.PubSub},
       # Start the Endpoint (http/https)
-      Sneakers23Web.Endpoint
+      Sneakers23Web.Endpoint,
       # Start a worker by calling: Sneakers23.Worker.start_link(arg)
       # {Sneakers23.Worker, arg}
+      Sneakers23.Inventory
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

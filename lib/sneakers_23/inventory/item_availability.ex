@@ -12,7 +12,7 @@ defmodule Sneakers23.Inventory.Item_availability do
   @doc false
   def changeset(item_availability, attrs) do
     item_availability
-    |> cast(attrs, [])
-    |> validate_required([])
+    |> cast(attrs, [:available_count, :item_id])
+    |> validate_required([:available_count, :item_id])
   end
 end

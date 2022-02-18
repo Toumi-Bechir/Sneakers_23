@@ -1,24 +1,27 @@
-<h1>Listing Products</h1>
+<main class="product-list">
+  <%= for product <- @products do %>
+    <div class="product-listing" id="proid" data-id={product.id} value = {product.id}>
+    {{product.id}}
+      <div class="product-listing__image-wrap">
+        <img src={product.main_image_url} />
+      </div>
 
-<table>
-  <thead>
-    <tr>
+      <div class="product-listing__details">
+        <h4 class="product-listing__detail-header"><%= product.name %></h4>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for product <- @products do %>
-    <tr>
+        <div>by <%= product.brand %></div>
+        <div><%= product.color %></div>
+        <div>$<%= product.price_usd %></div>
+        <div>released<%= product.released %></div>
 
-      <td>
-        <span><%= link "Show", to: Routes.product_path(@conn, :show, product) %></span>
-        <span><%= link "Edit", to: Routes.product_path(@conn, :edit, product) %></span>
-        <span><%= link "Delete", to: Routes.product_path(@conn, :delete, product), method: :delete, data: [confirm: "Are you sure?"] %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New Product", to: Routes.product_path(@conn, :new) %></span>
+        <%= if product.released == true do %>
+          <%= render("_sizes.html", product: product) %>
+        <% else %>
+          <h4 class="product-soon-{product.id}">
+            coming soon...
+          </h4>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</main>

@@ -13,7 +13,7 @@ defmodule Sneakers23.Inventory.Item do
   @doc false
   def changeset(item, attrs) do
     item
-    |> cast(attrs, [])
-    |> validate_required([])
+    |> cast(attrs, [:sku, :size, :product_id])
+    |> validate_required([:sku, :size, :product_id])
   end
 end

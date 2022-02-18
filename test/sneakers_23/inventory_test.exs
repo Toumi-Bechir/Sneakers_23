@@ -53,6 +53,15 @@ defmodule Sneakers23.InventoryTest do
       product = product_fixture()
       assert %Ecto.Changeset{} = Inventory.change_product(product)
     end
+
+    test "the update is sent to the client", %{test: test_name} do
+      {_,%{p1: p1}} = Test.Factory.InventoryFactory.complete_products()
+      {:ok, pid} = Server.start_link(name: test_name, Loader_mod: DatabaseLoader)
+      Sneakers23Web.Endpoint.subscribe("product:#{p1.id}")
+
+      Inventory.mark_product_released!(p1.id, pid: pid)
+      assert_received %Phoenix.Socket.Broadcast{event: "released"}
+    end
   end
 
   describe "items" do
